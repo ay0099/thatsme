@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨沛霖 - 个人简历</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-switcher button {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 2px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .language-switcher button.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .language-switcher button:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .resume-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .name {
+            font-size: 3em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .title {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+        
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #764ba2;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+        
+        .job-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .duration {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .job-description {
+            list-style: none;
+        }
+        
+        .job-description li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .job-description li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 0.8em;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .skill-category h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .education-info h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .education-info p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .education-year {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .highlight-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .highlight-box p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher">
+        <button onclick="switchLanguage('zh-cn')" class="active" id="btn-zh-cn">简体中文</button>
+        <button onclick="switchLanguage('zh-tw')" id="btn-zh-tw">繁體中文</button>
+        <button onclick="switchLanguage('en')" id="btn-en">English</button>
+    </div>
+
+    <!-- 简体中文版本 -->
+    <div id="zh-cn" class="resume-container">
+        <div class="header">
+            <img src="個人相.png" alt="杨沛霖" class="photo">
+            <h1 class="name">杨沛霖</h1>
+            <p class="title">GenAI与人文学科 | 商业管理 | 澳洲+香港双硕士背景 | 复合型人才</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📅</div>
+                    <span>1998.07.24</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <span>57750578</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <span>Anthonyyang724@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <span>LinkedIn: peilin（anthony）yang</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <h3>🌟 个人特色</h3>
+                <p>具备技术背景与人文素养的复合型人才，拥有奢侈品行业、供应链管理、文化创意等多领域工作经验，具备创业精神和商业敏感度，持续学习AI技术，致力于将人工智能应用于创意内容和文化传播领域。</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🎓 教育背景</h2>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>香港理工大学</h4>
+                        <p>生成式人工智能与人文学科</p>
+                        <p>研究生</p>
+                    </div>
+                    <div class="education-year">2024-2025</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>香港浸会大学</h4>
+                        <p>商务管理</p>
+                        <p>研究生</p>
+                    </div>
+                    <div class="education-year">2020-2021</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>澳大利亚昆士兰科技大学</h4>
+                        <p>国际商务</p>
+                        <p>本科</p>
+                    </div>
+                    <div class="education-year">2016-2019</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">💼 工作经历</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="job-title">商务专员</div>
+                        <div class="company">深圳朗华供应链服务有限公司</div>
+                        <div class="duration">2023.08 - 2024.04</div>
+                        <ul class="job-description">
+                            <li>开发显示屏、电子元器件、IC、精密仪器设备等电子工业行业客户</li>
+                            <li>签订代理进出口协议/仓储/物流/供应链金融服务等综合解决方案</li>
+                            <li>跟进客户订单，协调商务、关务、风控、物流等部门，处理业务流程及异常调解</li>
+                            <li>建立并维护客户关系，提升客户满意度和业务续约率</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">独立创业</div>
+                        <div class="company">奢侈品买手与二手奢侈品转售</div>
+                        <div class="duration">2021 - 2023</div>
+                        <ul class="job-description">
+                            <li>负责全新及二手奢侈品（包袋、腕表、配饰等）的采购、鉴定与销售</li>
+                            <li>分析市场及价格趋势，制定渠道化销售策略，提升库存周转率</li>
+                            <li>维护并拓展高端客户群，提升复购率与客户满意度</li>
+                            <li>运营线上销售渠道，进行内容营销与新品推广</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🎯 实习经历</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="job-title">设计师助理</div>
+                        <div class="company">深圳是季文化发展有限公司</div>
+                        <div class="duration">2019.12 - 2020.08</div>
+                        <ul class="job-description">
+                            <li>收集设计要求，确认专业设计前置条件，对接各部门沟通项目规划设计</li>
+                            <li>参与客户需求沟通，配合设计师协调，把控项目设计过程以及设计效果</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">活动宣传推广</div>
+                        <div class="company">Wonderland Party</div>
+                        <div class="duration">2018 - 2019</div>
+                        <ul class="job-description">
+                            <li>根据酒吧营销策略，制定主题节庆推广计划，组织推进实施监督营销方案</li>
+                            <li>参与制定活动内容及流程，执行跟进活动策划计划，跟踪推广效果</li>
+                            <li>负责微信、Facebook系列平台线上宣传推广</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🚀 核心技能</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>技术技能</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">数据分析与可视化</span>
+                            <span class="skill-tag">SPSS</span>
+                            <span class="skill-tag">Excel高级功能</span>
+                            <span class="skill-tag">编程能力</span>
+                            <span class="skill-tag">AI工具应用</span>
+                            <span class="skill-tag">Poe</span>
+                            <span class="skill-tag">Midjourney</span>
+                            <span class="skill-tag">Cursor</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>语言能力</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">英语</span>
+                            <span class="skill-tag">粤语</span>
+                            <span class="skill-tag">普通话</span>
+                            <span class="skill-tag">跨文化沟通</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>专业优势</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">国际化背景</span>
+                            <span class="skill-tag">数字文化理解</span>
+                            <span class="skill-tag">商业洞察</span>
+                            <span class="skill-tag">创业精神</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🏆 荣誉与认证</h2>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>Beta Gamma Sigma Member</h4>
+                        <p>国际商业荣誉学会会员</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 繁体中文版本 -->
+    <div id="zh-tw" class="resume-container hidden">
+        <div class="header">
+            <img src="個人相.png" alt="楊沛霖" class="photo">
+            <h1 class="name">楊沛霖</h1>
+            <p class="title">GenAI與人文學科 | 商業管理 | 澳洲+香港雙碩士背景 | 複合型人才</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📅</div>
+                    <span>1998.07.24</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <span>57750578</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <span>Anthonyyang724@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <span>LinkedIn: peilin（anthony）yang</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <h3>🌟 個人特色</h3>
+                <p>具備技術背景與人文素養的複合型人才，擁有奢侈品行業、供應鏈管理、文化創意等多領域工作經驗，具備創業精神和商業敏感度，持續學習AI技術，致力於將人工智慧應用於創意內容和文化傳播領域。</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🎓 教育背景</h2>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>香港理工大學</h4>
+                        <p>生成式人工智慧與人文學科</p>
+                        <p>研究生</p>
+                    </div>
+                    <div class="education-year">2024-2025</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>香港浸會大學</h4>
+                        <p>商務管理</p>
+                        <p>研究生</p>
+                    </div>
+                    <div class="education-year">2020-2021</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>澳洲昆士蘭科技大學</h4>
+                        <p>國際商務</p>
+                        <p>本科</p>
+                    </div>
+                    <div class="education-year">2016-2019</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">💼 工作經歷</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="job-title">商務專員</div>
+                        <div class="company">深圳朗華供應鏈服務有限公司</div>
+                        <div class="duration">2023.08 - 2024.04</div>
+                        <ul class="job-description">
+                            <li>開發顯示屏、電子元器件、IC、精密儀器設備等電子工業行業客戶</li>
+                            <li>簽訂代理進出口協議/倉儲/物流/供應鏈金融服務等綜合解決方案</li>
+                            <li>跟進客戶訂單，協調商務、關務、風控、物流等部門，處理業務流程及異常調解</li>
+                            <li>建立並維護客戶關係，提升客戶滿意度和業務續約率</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">獨立創業</div>
+                        <div class="company">奢侈品買手與二手奢侈品轉售</div>
+                        <div class="duration">2021 - 2023</div>
+                        <ul class="job-description">
+                            <li>負責全新及二手奢侈品（包袋、腕表、配飾等）的採購、鑑定與銷售</li>
+                            <li>分析市場及價格趨勢，制定渠道化銷售策略，提升庫存周轉率</li>
+                            <li>維護並拓展高端客戶群，提升復購率與客戶滿意度</li>
+                            <li>運營線上銷售渠道，進行內容營銷與新品推廣</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🎯 實習經歷</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="job-title">設計師助理</div>
+                        <div class="company">深圳是季文化發展有限公司</div>
+                        <div class="duration">2019.12 - 2020.08</div>
+                        <ul class="job-description">
+                            <li>收集設計要求，確認專業設計前置條件，對接各部門溝通專案規劃設計</li>
+                            <li>參與客戶需求溝通，配合設計師協調，把控專案設計過程以及設計效果</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">活動宣傳推廣</div>
+                        <div class="company">Wonderland Party</div>
+                        <div class="duration">2018 - 2019</div>
+                        <ul class="job-description">
+                            <li>根據酒吧營銷策略，制定主題節慶推廣計劃，組織推進實施監督營銷方案</li>
+                            <li>參與制定活動內容及流程，執行跟進活動策劃計劃，跟蹤推廣效果</li>
+                            <li>負責微信、Facebook系列平台線上宣傳推廣</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🚀 核心技能</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>技術技能</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">數據分析與可視化</span>
+                            <span class="skill-tag">SPSS</span>
+                            <span class="skill-tag">Excel高級功能</span>
+                            <span class="skill-tag">程式設計能力</span>
+                            <span class="skill-tag">AI工具應用</span>
+                            <span class="skill-tag">Poe</span>
+                            <span class="skill-tag">Midjourney</span>
+                            <span class="skill-tag">Cursor</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>語言能力</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">英語</span>
+                            <span class="skill-tag">粵語</span>
+                            <span class="skill-tag">普通話</span>
+                            <span class="skill-tag">跨文化溝通</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>專業優勢</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">國際化背景</span>
+                            <span class="skill-tag">數位文化理解</span>
+                            <span class="skill-tag">商業洞察</span>
+                            <span class="skill-tag">創業精神</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🏆 榮譽與認證</h2>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>Beta Gamma Sigma Member</h4>
+                        <p>國際商業榮譽學會會員</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 英文版本 -->
+    <div id="en" class="resume-container hidden">
+        <div class="header">
+            <img src="個人相.png" alt="Yang Peilin" class="photo">
+            <h1 class="name">Yang Peilin</h1>
+            <p class="title">GenAI & Humanities | Business Management | Australia+HK Dual Master's | Multidisciplinary Professional</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📅</div>
+                    <span>July 24, 1998</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <span>57750578</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <span>Anthonyyang724@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <span>LinkedIn: peilin（anthony）yang</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <h3>🌟 Personal Highlights</h3>
+                <p>A multidisciplinary professional with technical background and humanities expertise, possessing extensive experience in luxury goods, supply chain management, and cultural creative industries. Demonstrates entrepreneurial spirit and business acumen, continuously learning AI technologies and committed to applying artificial intelligence in creative content and cultural communication.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🎓 Education</h2>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>The Hong Kong Polytechnic University</h4>
+                        <p>Generative AI & Humanities</p>
+                        <p>Master's Degree</p>
+                    </div>
+                    <div class="education-year">2024-2025</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>Hong Kong Baptist University</h4>
+                        <p>Business Management</p>
+                        <p>Master's Degree</p>
+                    </div>
+                    <div class="education-year">2020-2021</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>Queensland University of Technology, Australia</h4>
+                        <p>International Business</p>
+                        <p>Bachelor's Degree</p>
+                    </div>
+                    <div class="education-year">2016-2019</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">💼 Work Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="job-title">Business Specialist</div>
+                        <div class="company">Shenzhen Langhua Supply Chain Services Co., Ltd.</div>
+                        <div class="duration">Aug 2023 - Apr 2024</div>
+                        <ul class="job-description">
+                            <li>Developed clients in display screens, electronic components, IC, precision instruments and equipment in electronics industry</li>
+                            <li>Negotiated agency import/export agreements, warehousing, logistics, and supply chain financial services</li>
+                            <li>Managed customer orders, coordinated with business, customs, risk control, and logistics departments</li>
+                            <li>Built and maintained customer relationships, improved customer satisfaction and business renewal rates</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">Independent Entrepreneur</div>
+                        <div class="company">Luxury Goods Buyer & Second-hand Luxury Resale</div>
+                        <div class="duration">2021 - 2023</div>
+                        <ul class="job-description">
+                            <li>Managed procurement, authentication, and sales of new and second-hand luxury goods (bags, watches, accessories)</li>
+                            <li>Analyzed market and price trends, developed channel-based sales strategies to improve inventory turnover</li>
+                            <li>Maintained and expanded high-end customer base, improved repurchase rates and customer satisfaction</li>
+                            <li>Operated online sales channels, conducted content marketing and new product promotion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🎯 Internship Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="job-title">Design Assistant</div>
+                        <div class="company">Shenzhen Shiji Cultural Development Co., Ltd.</div>
+                        <div class="duration">Dec 2019 - Aug 2020</div>
+                        <ul class="job-description">
+                            <li>Collected design requirements, confirmed professional design prerequisites, coordinated with departments for project planning</li>
+                            <li>Participated in customer needs communication, coordinated with designers to control project design process and effects</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">Event Promotion Specialist</div>
+                        <div class="company">Wonderland Party</div>
+                        <div class="duration">2018 - 2019</div>
+                        <ul class="job-description">
+                            <li>Developed themed festival promotion plans based on bar marketing strategies</li>
+                            <li>Participated in event content and process planning, executed and tracked promotion effectiveness</li>
+                            <li>Managed WeChat and Facebook platform online promotion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🚀 Core Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Technical Skills</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Data Analytics & Visualization</span>
+                            <span class="skill-tag">SPSS</span>
+                            <span class="skill-tag">Advanced Excel</span>
+                            <span class="skill-tag">Programming</span>
+                            <span class="skill-tag">AI Tools</span>
+                            <span class="skill-tag">Poe</span>
+                            <span class="skill-tag">Midjourney</span>
+                            <span class="skill-tag">Cursor</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Language Skills</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">English</span>
+                            <span class="skill-tag">Cantonese</span>
+                            <span class="skill-tag">Mandarin</span>
+                            <span class="skill-tag">Cross-cultural Communication</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Professional Advantages</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">International Background</span>
+                            <span class="skill-tag">Digital Culture Understanding</span>
+                            <span class="skill-tag">Business Insight</span>
+                            <span class="skill-tag">Entrepreneurial Spirit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🏆 Honors & Certifications</h2>
+                <div class="education-item">
+                    <div class="education-info">
+                        <h4>Beta Gamma Sigma Member</h4>
+                        <p>International Business Honor Society</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // 隐藏所有版本
+            document.getElementById('zh-cn').classList.add('hidden');
+            document.getElementById('zh-tw').classList.add('hidden');
+            document.getElementById('en').classList.add('hidden');
+            
+            // 移除所有按钮的active状态
+            document.getElementById('btn-zh-cn').classList.remove('active');
+            document.getElementById('btn-zh-tw').classList.remove('active');
+            document.getElementById('btn-en').classList.remove('active');
+            
+            // 显示选中的版本
+            document.getElementById(lang).classList.remove('hidden');
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            // 保存语言偏好到本地存储
+            localStorage.setItem('preferred-language', lang);
+        }
+        
+        // 页面加载时恢复语言偏好
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferred-language');
+            if (savedLang) {
+                switchLanguage(savedLang);
+            }
+        });
+    </script>
+</body>
+</html>
